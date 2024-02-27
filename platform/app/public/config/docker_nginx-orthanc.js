@@ -5,6 +5,10 @@ window.config = {
   modes: [],
   // below flag is for performance reasons, but it might not work for all servers
   showWarningMessageForCrossOrigin: true,
+  customizationService: {
+    dicomUploadComponent:
+      '@ohif/extension-cornerstone.customizationModule.cornerstoneDicomUploadComponent',
+  },
   showCPUFallbackMessage: true,
   showLoadingIndicator: true,
   strictZSpacingForVolumeViewport: true,
@@ -22,6 +26,7 @@ window.config = {
         qidoSupportsIncludeField: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
+        dicomUploadEnabled: true,
         omitQuotationForMultipartRequest: true,
       },
     },
