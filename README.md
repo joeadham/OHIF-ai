@@ -50,3 +50,20 @@ https://www.orthanc-server.com/download.php
 
 # Setup OHIF with Orthanc and MONAILabel
 For more flexibilty and control, you can setup[ OHIF standalone](ohif_setup.md) and connect it to Orthanc and MONAILabel.
+
+# Server Setup
+To setup a server for remote access, follow the steps in the [server setup](server.md) section.
+
+# FAQ and Known Bugs
+If you are facing any issues with the installation or setup, please refer to the [FAQ](faq.md) section.
+# Licenses
+
+## MONAI
+MONAI is licensed under the Apache 2.0 License. See [LICENSE](https://github.com/Project-MONAI/MONAI/blob/dev/LICENSE).
+
+## OHIF
+OHIF is licensed under the MIT License. See [LICENSE](https://github.com/OHIF/Viewers/blob/master/LICENSE).
+
+## Orthanc
+Orthan is licensed under the GNU Affero General Public License. See [LICENSE](https://github.com/jodogne/Orthanc/blob/master/LICENSE).
+
