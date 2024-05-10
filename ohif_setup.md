@@ -4,7 +4,7 @@ For more flexibilty and control, you can setup OHIF standalone and connect it to
 ![connectivity](OHIF,MONAI,ORTHANC.png)
 
 ## Prerequisites
-- [Setup Orthanc and MONAILabel](easy_setup.md)
+- [Setup Orthanc and MONAILabel](README.md)
 - [Downloaded OHIF source code, met its requirements, and installed its dependencies](https://github.com/OHIF/Viewers?tab=readme-ov-file#requirements)
 
 ## Step 1: Install the MONAILabel OHIF Plugin
@@ -33,7 +33,7 @@ For more flexibilty and control, you can setup OHIF standalone and connect it to
 ## Step 3: Running OHIF and performing inferences
 
 1. Navigate to the `OHIF` directory and open a command prompt or terminal.
-2. Start the MONAILabel and Orthanc servers. (Refer to the [MONAILabel and Orthanc setup](easy_setup.md))
+2. Start the MONAILabel and Orthanc servers. (Refer to the [MONAILabel and Orthanc setup](README.md))
 2. Run the following command to start the OHIF server:
     ```
     yarn run dev:orthanc
