@@ -69,6 +69,18 @@ module.exports = (env, argv) => {
         // Hoisted Yarn Workspace Modules
         path.resolve(__dirname, '../../../node_modules'),
         SRC_DIR,
+        path.resolve(
+          __dirname,
+          'C:/Studies/Graduation-Project/Codes/Website/ohifgithub/OHIF-ai/website/modes/monai-label/node_modules'
+        ),
+        path.resolve(
+          __dirname,
+          'C:/Studies/Graduation-Project/Codes/Website/ohifgithub/OHIF-ai/website/extensions/monai-label/node_modules'
+        ),
+        path.resolve(
+          __dirname,
+          'C:/Studies/Graduation-Project/Codes/Website/ohifgithub/OHIF-ai/website/extensions/monai-label/node_modules'
+        ),
       ],
     },
     plugins: [
