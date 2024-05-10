@@ -22,8 +22,11 @@ https://www.orthanc-server.com/download.php
 ### Macos System
 1. Download the Orthanc server installer from the official Orthanc website.
 2. Run by double clicking on the *startOrthanc.command* File in the downloaded folder.
+   
+   **Note:** The file runs all the plugins in the installed folder, you might get this message 'macOS Cannot Verify That This App Is Free from Malware', you need to go to Security & Privacy in the Settings and allow all of the files that are shown there while running. It will run after you allow all of them.
+   
 3. To upload Dicom Studies navigate to `http://localhost:8042/`.
-
+   
 
 ## Step 2: Install MONAILabel
 1. Open a command prompt or terminal.
@@ -39,6 +42,8 @@ https://www.orthanc-server.com/download.php
     ```
     monailabel start_server --app radiology --studies http://localhost:8042/dicom-web --conf models all
     ```
+    You can read about radiology app and its models from [Monailabel Radiology App](https://github.com/Project-MONAI/MONAILabel/blob/main/sample-apps/radiology/README.md) 
+
 5. Open a web browser and navigate to `http://localhost:8000/ohif` to access the OHIF app.
 
 
