@@ -1,0 +1,112 @@
+[
+    {
+        "train": [
+            "volume_4",
+            "volume_5",
+            "volume_6",
+            "volume_7",
+            "volume_8",
+            "volume_9",
+            "volume_10",
+            "volume_11",
+            "volume_12",
+            "volume_13",
+            "volume_14",
+            "volume_15",
+            "volume_16"
+        ],
+        "val": [
+            "volume_1",
+            "volume_2",
+            "volume_3"   ]
+    },
+    {
+        "train": [
+            "volume_1",
+            "volume_2",
+            "volume_3",
+            "volume_7",
+            "volume_8",
+            "volume_9",
+            "volume_10",
+            "volume_11",
+            "volume_12",
+            "volume_13",
+            "volume_14",
+            "volume_15",
+            "volume_16"
+        ],
+        "val": [
+            "volume_4",
+            "volume_5",
+            "volume_6"
+        ]
+    },
+    {
+        "train": [
+            "volume_1",
+            "volume_2",
+            "volume_3",
+            "volume_4",
+            "volume_5",
+            "volume_6",
+            "volume_10",
+            "volume_11",
+            "volume_12",
+            "volume_13",
+            "volume_14",
+            "volume_15",
+            "volume_16"
+        ],
+        "val": [
+            "volume_7",
+            "volume_8",
+            "volume_9"
+        ]
+    },
+    {
+        "train": [
+            "volume_1",
+            "volume_2",
+            "volume_3",
+            "volume_4",
+            "volume_5",
+            "volume_6",
+            "volume_7",
+            "volume_8",
+            "volume_9",
+            "volume_13",
+            "volume_14",
+            "volume_15",
+            "volume_16"
+        ],
+        "val": [
+            "volume_10",
+            "volume_11",
+            "volume_12"
+        ]
+    },
+    {
+        "train": [
+            "volume_1",
+            "volume_2",
+            "volume_3",
+            "volume_4",
+            "volume_5",
+            "volume_6",
+            "volume_7",
+            "volume_8",
+            "volume_9",
+            "volume_10",
+            "volume_11",
+            "volume_12"
+        ],
+        "val": [
+            "volume_13",
+            "volume_14",
+            "volume_15",
+            "volume_16"
+
+        ]
+    }
+]
