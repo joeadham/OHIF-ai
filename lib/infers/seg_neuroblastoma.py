@@ -26,9 +26,9 @@ from monailabel.utils.others.generic import name_to_device
 
 
 # should be changed to the actual folders paths:
-os.environ['nnUNet_preprocessed']= 'D:/nnunet/Preprocessed'
-os.environ['nnUNet_results']= 'D:/nnunet/Results'
-os.environ['nnUNet_raw']= 'D:/nnunet/Raw'
+os.environ['nnUNet_preprocessed']= 'nnunet/Preprocessed'
+os.environ['nnUNet_results']= 'nnunet/Results'
+os.environ['nnUNet_raw']= 'nnunet/Raw'
 
 from batchgenerators.utilities.file_and_folder_operations import join
 from nnunetv2.inference.predict_from_raw_data import predict_from_raw_data
