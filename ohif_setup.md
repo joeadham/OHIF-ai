@@ -29,6 +29,10 @@ For more flexibilty and control, you can setup OHIF standalone and connect it to
     ```
     yarn run cli list
     ```
+5. Now, run the following command to install monailabel's dependencies
+   ```
+   yarn install
+   ``` 
 
 ## Step 3: Running OHIF and performing inferences
 
