@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - Windows or Macos machine 
-- Python 3.8 installed
+- Python 3.9 installed
 
 ## Step 1: Install Orthanc
 Official Ortnac Website for Download
