@@ -68,7 +68,7 @@ class TotalSegmentator(BasicInferTask):
             **kwargs,
         )
        
-       self.temp_path='C:/Users/youse/OneDrive/Desktop/GP/GP Codes/OHIF/monailabel/try'
+       self.temp_path='temp/'
 
     def __call__(
         self, request, callbacks: Union[Dict[CallBackTypes, Any], None] = None
