@@ -26,12 +26,12 @@ from monailabel.utils.others.generic import name_to_device
 
 
 # should be changed to the actual folders paths:
-os.environ['nnUNet_preprocessed']= 'nnunet/Preprocessed'
-os.environ['nnUNet_results']= 'nnunet/Results'
-os.environ['nnUNet_raw']= 'nnunet/Raw'
+os.environ['nnUNet_preprocessed']= 'C:/Users/youse/OneDrive/Desktop/GP/GP Codes/OHIF/monailabel/nnunet_ws/Preprocessed'
+os.environ['nnUNet_results']= 'C:/Users/youse/OneDrive/Desktop/GP/GP Codes/OHIF/monailabel/nnunet_ws/Results'
+os.environ['nnUNet_raw']= 'C:/Users/youse/OneDrive/Desktop/GP/GP Codes/OHIF/monailabel/nnunet_ws/Raw'
 
 from batchgenerators.utilities.file_and_folder_operations import join
-from nnunetv2.inference.predict_from_raw_data import predict_from_raw_data
+from nnunetv2.inference.predict_from_raw_data import nnUNetPredictor
 from nnunetv2.paths import nnUNet_results
 
 
@@ -72,76 +72,7 @@ class SegmentationNeuroblastoma(BasicInferTask):
        self.temp_path='/temp'
 
 
-    def __call__(
-        self, request, callbacks: Union[Dict[CallBackTypes, Any], None] = None
-    ) -> Union[Dict, Tuple[str, Dict[str, Any]]]:
-        """
-        It provides basic implementation to run the following in order
-            - Run Pre Transforms
-            - Run Inferer
-            - Run Invert Transforms
-            - Run Post Transforms
-            - Run Writer to save the label mask and result params
-
-        You can provide callbacks which can be useful while writing pipelines to consume intermediate outputs
-        Callback function should consume data and return data (modified/updated) e.g. `def my_cb(data): return data`
-
-        Returns: Label (File Path) and Result Params (JSON)
-        """
-        req = copy.deepcopy(self._config)
-        req.update(request)
-
-        # device
-        device = name_to_device(req.get("device", "cuda"))
-        req["device"] = device
-
-        logger.setLevel(req.get("logging", "INFO").upper())
-        if req.get("image") is not None and isinstance(req.get("image"), str):
-            logger.info(f"Infer Request (final): {req}")
-            data = copy.deepcopy(req)
-            data.update({"image_path": req.get("image")})
-        else:
-            dump_data(req, logger.level)
-            data = req
-
-        # callbacks useful in case of pipeliens to consume intermediate output from each of the following stages
-        # callback function should consume data and returns data (modified/updated)
-        callbacks = callbacks if callbacks else {}
-        callback_run_inferer = callbacks.get(CallBackTypes.INFERER)
-        callback_writer = callbacks.get(CallBackTypes.WRITER)
-       
-        data = self.run_inferer(data, device=device)
-
-        if callback_run_inferer:
-            data = callback_run_inferer(data)
-
-        if self.skip_writer:
-            return dict(data)
-
-        result_file_name, result_json = self.writer(data)  
-
-        if callback_writer:
-            data = callback_writer(data)
-      
-
-        result_json["label_names"] = self.labels
-     
-
-        # Add Centroids to the result json to consume in OHIF v3
-        centroids = data.get("centroids", None)
-        if centroids is not None:
-            centroids_dict = dict()
-            for c in centroids:
-                all_items = list(c.items())
-                centroids_dict[all_items[0][0]] = [str(i) for i in all_items[0][1]]  # making it json compatible
-            result_json["centroids"] = centroids_dict
-        else:
-            result_json["centroids"] = dict()
-
-        if result_file_name is not None and isinstance(result_file_name, str):
-            logger.info(f"Result File: {result_file_name}")
-        logger.info(f"Result Json Keys: {list(result_json.keys())}")
-        return result_file_name, result_json
+    
     
 
 
@@ -155,23 +86,43 @@ class SegmentationNeuroblastoma(BasicInferTask):
         :param device: device type run load the model and run inferer
         :return: updated data with output_key 
         """
-        predict_from_raw_data(list_of_lists_or_source_folder= [[data[self.input_key]]],
-                          output_folder= self.temp_path,
-                          model_training_output_dir=join(nnUNet_results, 'Dataset200_blastoma/nnUNetTrainer__nnUNetPlans__3d_fullres'),
-                          use_folds=(0,),
-                          tile_step_size = 0.5,
-                          use_gaussian = True,
-                          use_mirroring= True,
-                          perform_everything_on_gpu=True,
-                          verbose = True,
-                          overwrite = True,
-                          checkpoint_name= 'checkpoint_best.pth',
-                          num_processes_preprocessing = 1,
-                          num_processes_segmentation_export = 1,
-                          folder_with_segs_from_prev_stage = None,
-                          num_parts = 1,
-                          part_id = 0,
-                          device= torch.device('cuda'))
+        # predict_from_raw_data(list_of_lists_or_source_folder= [[data[self.input_key]]],
+        #                   output_folder= self.temp_path,
+        #                   model_training_output_dir=join(nnUNet_results, 'Dataset200_blastoma/nnUNetTrainer__nnUNetPlans__3d_fullres'),
+        #                   use_folds=(0,),
+        #                   tile_step_size = 0.5,
+        #                   use_gaussian = True,
+        #                   use_mirroring= True,
+        #                   perform_everything_on_gpu=True,
+        #                   verbose = True,
+        #                   overwrite = True,
+        #                   checkpoint_name= 'checkpoint_best.pth',
+        #                   num_processes_preprocessing = 1,
+        #                   num_processes_segmentation_export = 1,
+        #                   folder_with_segs_from_prev_stage = None,
+        #                   num_parts = 1,
+        #                   part_id = 0,
+        #                   device= torch.device('cuda'))
+        predictor = nnUNetPredictor(
+            tile_step_size=0.5,
+            device=torch.device('cuda'),
+            verbose=True,
+            verbose_preprocessing=True,
+            allow_tqdm=True
+        )
+        
+        # Initializes the network architecture, loads the checkpoint
+        predictor.initialize_from_trained_model_folder(
+            join(nnUNet_results, 'Dataset200_blastoma/nnUNetTrainer__nnUNetPlans__3d_fullres'),
+            use_folds=(0,),
+            checkpoint_name='checkpoint_best.pth',
+        )
+
+        seg=predictor.predict_from_files([[data[self.input_key]]],
+                                      self.temp_path,    
+                                     save_probabilities=False, overwrite=True,
+                                     num_processes_preprocessing=1, num_processes_segmentation_export=1,
+                                     folder_with_segs_from_prev_stage=None, num_parts=1, part_id=0)
         
         if device.startswith("cuda"):
             torch.cuda.empty_cache()

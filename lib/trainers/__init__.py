@@ -17,5 +17,5 @@ from .segmentation import Segmentation
 from .segmentation_spleen import SegmentationSpleen
 from .segmentation_vertebra import SegmentationVertebra
 from .segmentation_liver import SegmentationLiver
-from .seg_neuroblastoma import SegmentationNeuroblastoma
 from .total_seg import TotalSegmentator
+from .seg_neuroblastoma import SegmentationNeuroblastoma
