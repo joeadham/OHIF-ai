@@ -55,7 +55,7 @@ For more flexibilty and control, you can setup[ OHIF standalone](ohif_setup.md) 
 To setup a server for remote access, follow the steps in the [server setup](server.md) section.
 
 # Add a new model
-To add additional pre-trained MONAI models, follow the steps in the [server setup](adding_new_model.md) section.
+To add additional pre-trained MONAI models, follow the steps in the [adding new model](adding_new_model.md) section.
 
 # FAQ and Known Bugs
 If you are facing any issues with the installation or setup, please refer to the [FAQ](faq.md) section.
