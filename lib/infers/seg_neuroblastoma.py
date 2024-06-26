@@ -86,23 +86,6 @@ class SegmentationNeuroblastoma(BasicInferTask):
         :param device: device type run load the model and run inferer
         :return: updated data with output_key 
         """
-        # predict_from_raw_data(list_of_lists_or_source_folder= [[data[self.input_key]]],
-        #                   output_folder= self.temp_path,
-        #                   model_training_output_dir=join(nnUNet_results, 'Dataset200_blastoma/nnUNetTrainer__nnUNetPlans__3d_fullres'),
-        #                   use_folds=(0,),
-        #                   tile_step_size = 0.5,
-        #                   use_gaussian = True,
-        #                   use_mirroring= True,
-        #                   perform_everything_on_gpu=True,
-        #                   verbose = True,
-        #                   overwrite = True,
-        #                   checkpoint_name= 'checkpoint_best.pth',
-        #                   num_processes_preprocessing = 1,
-        #                   num_processes_segmentation_export = 1,
-        #                   folder_with_segs_from_prev_stage = None,
-        #                   num_parts = 1,
-        #                   part_id = 0,
-        #                   device= torch.device('cuda'))
         predictor = nnUNetPredictor(
             tile_step_size=0.5,
             device=torch.device('cuda'),
